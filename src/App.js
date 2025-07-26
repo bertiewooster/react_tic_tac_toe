@@ -59,7 +59,7 @@ export default function Game() {
   const currentSquares = history[currentMove];
 
   function handlePlay(nextSquares) {
-    const nextHistory = ([...history.slice(0, currentMove + 1), nextSquares]);
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
   }
@@ -83,14 +83,21 @@ export default function Game() {
   });
 
   return (
-    <div className="game">
-      <div className="game-board">
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+    <>
+      <div className="game">
+        <div className="game-board">
+          <Board
+            xIsNext={xIsNext}
+            squares={currentSquares}
+            onPlay={handlePlay}
+          />
+        </div>
+        <div className="game-info">
+          <ol>{moves}</ol>
+        </div>
       </div>
-      <div className="game-info">
-        <ol>{moves}</ol>
-      </div>
-    </div>
+      <p>Site by <a href="https://bertiewooster.github.io">Jeremy Monat</a> based on <a href="https://react.dev/learn/tutorial-tic-tac-toe">React tutorial</a></p>
+    </>
   );
 }
 
